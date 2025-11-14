@@ -16,8 +16,8 @@ final: prev: {
     recommendedPackages =
       prev.radianWrapper.recommendedPackages
       ++ (with final.rPackages; [
-        tidyverse
         nvimcom
+        quarto
       ]);
   };
   vimPlugins = prev.vimPlugins // {
@@ -34,6 +34,7 @@ final: prev: {
         final.rEnv
       ];
     };
+    # Added cmp-r to complete functionality for R-nvim
     cmp-r = final.vimUtils.buildVimPlugin {
       pname = "cmp-r";
       version = "2025-08-05";

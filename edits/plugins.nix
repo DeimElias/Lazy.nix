@@ -2,32 +2,13 @@
 with pkgs.vimPlugins;
 [
   lazy-nvim
-  plenary-nvim
-  flash-nvim
-  r-nvim
-  which-key-nvim
   blink-cmp
-  blink-compat
-  cmp-r
-  otter-nvim
-  telescope-nvim
-  undotree
-  vim-dadbod
-  vim-dadbod-ui
-  vim-dadbod-completion
-  neogit
-  gitsigns-nvim
-  lualine-nvim
-  nvim-web-devicons
-  noice-nvim
-  nui-nvim
-  nvim-notify
-  diffview-nvim
+  nvim-lspconfig
+  nvim-treesitter.withAllGrammars
+  # Some plugins will requiere other plugins to be installed to pass some test,
+  # if you dont want to install or use them, you can override doCheck attribute
+  # to disable those checks
   (tokyonight-nvim.overrideAttrs (original: {
     doCheck = false;
   }))
-  nvim-lspconfig
-  nvim-treesitter.withAllGrammars
-  nvim-dap
-  nvim-dap-ui
 ]

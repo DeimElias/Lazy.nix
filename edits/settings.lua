@@ -70,4 +70,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 	end,
 })
 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fr', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
+vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Telescope Fuzzy find in Buffer' })
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

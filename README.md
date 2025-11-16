@@ -8,14 +8,14 @@ If you are wondering “why should I do this?”, the main benefits are:
 
 
 - Your editor configuration anywhere you are, with 2 commands at most (install
-  Nix and call your configuration)
+  Nix and call your configuration).
 - Reproducible way of including your configuration "the Nix way" in Home
   Manager or NixOS.
 
 ## Some considerations...
 
 Nix is a powerful package manager, and this template aims to use it as our only
-package manager for plugins, lsp servers, treesitter parsers, and runtime
+package manager for plugins, LSP servers, treesitter parsers, and runtime
 dependencies. This means that if a Neovim plugin is a package manager with
 (maybe) some utilities, all of its package manager capabilities should be
 disabled and instead rely purely on nix. Some examples are:
@@ -44,7 +44,7 @@ Clone this repository. You can see the "personal" branch to see an example
 configuration. All the configurations for neovim are contained in the "edits" directory.
 
 
-All your neovim settings will be in ./edits/settings.lua, this is a normal lua file, for example:
+All your neovim settings will be in ./edits/settings.lua, this is a normal Lua file, for example:
 
 ```lua
 
@@ -90,7 +90,7 @@ Since the ./edits/lua directory is used to make a derivation, and then added to
 the runtime path of Neovim, you can place any directory searched by Neovim in
 the VIMRUNTIME (:h vimfiles).
 
-Once you added a plugin, you have to list this plugin in ./edits/plugins.nix as folows:
+Once you have added a plugin, you have to list this plugin in ./edits/plugins.nix as follows:
 
 ```nix
 { pkgs }:
@@ -100,15 +100,15 @@ with pkgs.vimPlugins;
   blink-cmp
   nvim-lspconfig
   nvim-treesitter.withAllGrammars
-  # Some plugins will requiere other plugins to be installed to pass some test,
-  # if you dont want to install or use them, you can override doCheck attribute
+  # Some plugins will require other plugins to be installed to pass some tests,
+  # if you don't want to install or use them, you can override doCheck attribute
   # to disable those checks
   (tokyonight-nvim.overrideAttrs (original: {
     doCheck = false;
   }))
 ]
 ```
-Remember that those names are for nix packed plugins.
+Remember that those names are for Nix-packed plugins.
 
 
 If a plugin is not packaged, you can add it in ./edits/overlay.nix, see [Custom
@@ -116,8 +116,8 @@ plugins](https://github.com/DeimElias/Lazy.nix/blob/main/CustomPlugins.md)
 section for instructions.
 
 
-There are plugins that require some external executables in order to work, like
-language servers, debugger adapters, database executables, or utilities, etc,
+Some plugins require some external executables to work, like
+language servers, debugger adapters, database executables, or utilities, etc.
 those external dependencies should be included in ./edits/dependencies.nix
 
 ```nix
@@ -146,7 +146,7 @@ to the inputs, then add the neovim package from this flake.
 
 
 If you want to mimic this configuration without flakes, you can
-copy this directory inside of your configuration and just add the following to
+copy this directory inside your configuration and add the following to
 your main file configuration:
 
 
@@ -167,4 +167,4 @@ home.programs = with pkgs; [custom-neovim]; # For Home manager
 environment.systemPackages = with pkgs; [custom-neovim]; # for NixOS
 
 ```
-after that, you can configure as described in the past section
+After that, you can configure as described in the previous section

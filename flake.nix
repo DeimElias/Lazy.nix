@@ -32,37 +32,8 @@
     {
       packages = forEachSupportedSystem (
         { pkgs }:
-        let
-          pluginsDir = pkgs.vimUtils.packDir self.packages.${pkgs.system}.neovim.passthru.packpathDirs;
-        in
         {
-          neovim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
-            vimAlias = true;
-            viAlias = true;
-            plugins = (import ./edits/plugins.nix { inherit pkgs; });
-            luaRcContent = pkgs.lib.concatLines [
-              (builtins.readFile ./edits/settings.lua)
-              (import ./lua.nix {
-                luaDir = "${self.packages.${pkgs.system}.luaFiles}";
-                plugins = "${pluginsDir}/pack/myNeovimPackages/start";
-              })
-            ];
-          };
-
-          luaFiles = pkgs.stdenv.mkDerivation {
-            pname = "neovim-conf";
-            version = "1.0";
-            src = ./edits/lua;
-            installPhase = ''
-              	mkdir -p $out/lua
-                      cp -r ./* $out/lua
-              	'';
-            # Add completion for plugins and VIMRUNTIME
-            fixupPhase = ''
-              	  substituteInPlace $out/lua/plugins/lspconfig.lua --replace FIXME ${pluginsDir}
-            '';
-          };
-
+          neovim = pkgs.custom-neovim;
         }
       );
       apps = nixpkgs.lib.genAttrs supportedSystems (system: {

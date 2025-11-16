@@ -1,5 +1,5 @@
-{ pkgs }:
-with pkgs.vimPlugins;
+{ final }:
+with final.vimPlugins;
 [
   lazy-nvim
   blink-cmp

@@ -27,8 +27,8 @@ final: prev: {
       src = final.fetchFromGitHub {
         owner = "R-nvim";
         repo = "R.nvim";
-        rev = "main";
-        sha256 = "sha256-mb8HCaMasPUP9JZUkH1sPrtdbhM2HMUkJEKDsRt6wTs=";
+        rev = "v0.99.3";
+        sha256 = "sha256-oQSHHu6filJkAyH94yEvyTVuxA+5MU2dMOEAnsIjJKQ=";
       };
       runtimeDeps = [
         final.rEnv

@@ -41,8 +41,8 @@ final: prev: {
       src = final.fetchFromGitHub {
         owner = "R-nvim";
         repo = "cmp-r";
-        rev = "main";
-        sha256 = "sha256-TwmLSILu1H3RyRivCQlbsgUN4dsEqO1E8Hx71N/lFws=";
+        rev = "v0.99.3";
+        sha256 = "sha256-oQSHHu6filJkAyH94yEvyTVuxA+5MU2dMOEAnsIjJKQ=";
       };
       doCheck = false;
       passthru.runtimeDeps = [ final.quarto ];
